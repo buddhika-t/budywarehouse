@@ -1,0 +1,19 @@
+version: '2'
+
+services:
+  budywarehouse:
+    image: budywarehouse
+    build: .
+    environment:
+      NODE_ENV: production
+    ports:
+      - 8080:8080
+    links:
+      - mongo
+  mongo:
+    container_name: mongo
+    image: mongo
+    volumes:
+      - ./data:/data/db
+    ports:
+      - "27017:27017"
